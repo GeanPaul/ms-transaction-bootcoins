@@ -21,7 +21,7 @@ public class KafkaConsumer {
         //Transformamos el String mensaje que recibimos a objeto
     Transaction transaction= Util.objectMapper.readValue(message,Transaction.class);
     log.info("Message recevid " + message);
-    transactionService.processTransaction(transaction);
+    log.info(transactionService.processTransaction(transaction));
 
 
 

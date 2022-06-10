@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,12 +32,16 @@ public class TransactionServiceImpl  implements TransactionService{
                                 .map(BootcoinsRateCache::fromBoorcoinsRateResponse)
                                 .collect(Collectors.toList())
             );
-
             }
             log.info("From Redis Cache " + bootcoinsRateCacheService.getAll().toString());
+            log.info("Transacción aceptada..");
+            log.info("Number of Transaction: " + UUID.randomUUID().toString());
+            log.info("Cantidad de bootcoins: " + transaction.getMount() + " bootcoins");
+            log.info("Modo de pago " + transaction.getPaymode());
+            log.info("Número celular: " + transaction.getCelular());
+            log.info("Nuúmero de cuenta: " + transaction.getNumberAccount());
+
             return  "Processing Buy...";
-
-
         }
         else {
             return "Processing..." + transaction.getTransactionType();
